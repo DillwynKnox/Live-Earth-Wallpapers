@@ -1,3 +1,10 @@
+![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+![Linux](https://svgshare.com/i/Zhy.svg)
+![macOS](https://svgshare.com/i/ZjP.svg)
+![Windows](https://svgshare.com/i/ZhY.svg)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+<!---Source of the Badges: https://github.com/Naereen/badges -->
 # Live-Earth-Wallpapers
 Set your Desktop background to near realtime picures of the earth. \
 Supports all known **geostationary** satellites, high resolution **sentinel** images and Nasa **Solar Dynamics Observatory** Images!
@@ -28,12 +35,6 @@ Make sure to update image 2-3 min. later than the TaskScheduler runs.
 2. `python3`
 3. `feh`, `nitrogen` or `gsettings` to update the background image
 
-### Updating the background
-Choose between one of the programms to set the Image as your background.\
-For **Linux** use feh, nitrogen or gsettings as -p flag.\
-For **MacOs** use feh, osascript or apple_defaults as -p flag.\
-For **Windows** use windows as -p flag.
-
 Experience shows that not every programm will work. But most of the time at least one will.;)
 
 <details>
@@ -58,17 +59,15 @@ To update the Background you need either `feh`, `nitrogen` or `gsettings` to be 
 </details>
 
 <h3 id="scriptOptions">Script Parameter Options:</h3>
-<pre>usage: changeBackground.py [-h] [-z {0,1,2,3,4}] [-s {goes-16,goes-17,goes-18,himawari,meteosat-9,meteosat-11,sentinel,sdo}]
-                           [-m {geocolor,natural_color,0171,0171pfss,0304,0304pfss,HMIIC}] [-o OUTFILE]
-                           [-p {feh,nitrogen,gsettings,osascript,apple_defaults,windows}] [-a LATITUDE] [-b LONGITUDE]
+<pre>usage: changeBackground.py [-h] [-z {0,1,2,3,4}] [-s {goes-16,goes-17,goes-18,himawari,meteosat-9,meteosat-11,sentinel,sdo}] [-m {geocolor,natural_color,0171,0171pfss,0304,0304pfss,HMIIC}]
+                           [-o OUTFILE] [-p {feh,nitrogen,gsettings,osascript,apple_defaults,windows}] [-a LATITUDE] [-b LONGITUDE] [-w WIDTH] [-he HEIGHT]
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -z {0,1,2,3,4}, --zoomLevel {0,1,2,3,4}
                         Change the ImageSize 0=678, 1=1356, 2=2712, 3=5424, 4=10848 (Meteosat does not support Level 4)
   -s {goes-16,goes-17,goes-18,himawari,meteosat-9,meteosat-11,sentinel,sdo}, --source {goes-16,goes-17,goes-18,himawari,meteosat-9,meteosat-11,sentinel,sdo}
-                        Select Satellite as a source. goes-16, goes-17, goes-18, himawari, meteosat-9, meteosat-11, sentinel, sdo (NASA Solar Dynamics
-                        Observatory)
+                        Select Satellite as a source. goes-16, goes-17, goes-18, himawari, meteosat-9, meteosat-11, sentinel, sdo (NASA Solar Dynamics Observatory)
   -m {geocolor,natural_color,0171,0171pfss,0304,0304pfss,HMIIC}, --colorMode {geocolor,natural_color,0171,0171pfss,0304,0304pfss,HMIIC}
                         Select a color composite. geocolor and natural_color for goes, meteosat and himawari. The rest is only for SDO
   -o OUTFILE, --outFile OUTFILE
@@ -79,7 +78,20 @@ optional arguments:
                         Set the latitude of the Background image bounding box you want to set. Only for Sentinel as source.
   -b LONGITUDE, --longitude LONGITUDE
                         Set the longitude of the Background image bounding box you want to set. Only for Sentinel as source.
+  -w WIDTH, --width WIDTH
+                        wanted width of the Wallpaper Image
+  -he HEIGHT, --height HEIGHT
+                        wanted heigth of the Wallpaper Image
 </pre>
+
+### Explanation
+**-z** The zoom Factor. For Sentinel this is related to the distance in Km of the image covers. (0=1000km 4=150km) For goes/himawari/meteosat this specefies the resolution of the image.\
+**-w -he** This specefies the image size in pixels. It will scale the image to fit inside the given pixels and fill the rest with black color. When used togehter with `-z` it will scale the image. No matter how large the image was before. In other words: If you want a high resolution image. set -z to a large number and pass a corresponding image size with it.\
+**-p** This lets you choose between one of the programms to set the Image as your background.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For **Linux** use feh, nitrogen or gsettings as -p flag.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For **MacOs** use feh, osascript or apple_defaults as -p flag.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For **Windows** use windows as -p flag.\
+**-a -b** This specefies the location for the sentinel image. It has no effekt, when used in combination with every other satellite.
 
 ### Supported Satellites:
 
@@ -103,3 +115,8 @@ SDO
 | 0171/0171pfss| ![alt text](examples/1024_0171.jpg)  | ![alt text](examples/1024_0171pfss.jpg) |
 | 0304/pfss    | ![alt text](examples/1024_0304.jpg)  | ![alt text](examples/1024_0304pfss.jpg) |
 | HMIIC        | ![alt text](examples/1024_HMIIC.jpg) |                                         |
+
+### For Contributers
+1. Read the [Contributing](CONTRIBUTING.md) Readme.
+2. Filter issues by "For Contributers" Label to find topics to work on.
+3. Feel free to add your own ideas/ features or open a Discussion in the Discussions tab.
