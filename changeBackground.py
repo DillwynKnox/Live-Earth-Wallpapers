@@ -5,7 +5,7 @@ import os
 import sys
 
 
-from utils import  set_background
+from utils import  set_background,combine
 from downloadSat import get_Sat_Image
 
 sources = [
@@ -104,6 +104,8 @@ def parseArgs():
         "-he", "--height", type=int, help="wanted heigth of the Wallpaper Image"
     )
 
+    parser.add_argument("-c","--combination",type=str,help="combines two sattelites as the specified json file says")
+
     try:
         args = parser.parse_args()
     except:
@@ -114,11 +116,12 @@ def parseArgs():
 
 if __name__ == "__main__":
     args = parseArgs()
-
-
-    bg=get_Sat_Image(args)
-
-    
+    if args.combination is not None:
+        firstargs=args
+        secondargs=args
+        bg=combine(get_Sat_Image(firstargs),get_Sat_Image(secondargs),1920,1080)
+    else:
+        bg=get_Sat_Image(args)
 
     log_date = datetime.datetime.now(datetime.timezone.utc).strftime("%d_%m_%Y_%H_%M")
     filename = f"{os.path.dirname(os.path.realpath(__file__))}/backgroundImage.png"

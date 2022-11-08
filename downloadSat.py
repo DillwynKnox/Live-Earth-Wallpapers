@@ -3,6 +3,7 @@ from full_disks import build_url, get_image
 from nasa_sdo import get_sdo_image
 from sentinel import fetch_image
 from utils import make_border
+import sys
 
 sources = [
     "goes-16",
