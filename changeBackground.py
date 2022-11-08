@@ -74,7 +74,7 @@ if __name__ == "__main__":
     print(f"Image saved to: {filename}")
 
     if args.outFile is not None:
-        imagePath = f"{args.outFile}/{logDate}.png"
+        imagePath = args.outFile
         bg.save(imagePath)
 
     

@@ -42,3 +42,14 @@ def make_border(image, width,height):
     box = tuple((n - o) // 2 for n, o in zip(new_size, old_size))
     new_im.paste(old_im, box)
     return new_im
+
+
+def combine(image1:Image,image2:Image,widht ,height):
+    goldenratio=1/1.618
+    new_size=(widht,height)
+    new_Image=Image.new("RGB",new_size)
+    pos1=(-1*int(image1.size[0]/2),int(new_Image.size[1]/2)-int(image1.size[1]/2))
+    pos2=(int(new_Image.size[0]*goldenratio)-int(image2.size[0]/2),int(new_Image.size[1]/2)-int(image2.size[1]/2))
+    new_Image.paste(image1,pos1)
+    new_Image.paste(image2,pos2)
+    new_Image.save("combi.png")
