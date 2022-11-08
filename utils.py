@@ -77,3 +77,4 @@ def combine(image1:Image,image2:Image,widht ,height):
     new_Image.paste(image1,pos1)
     new_Image.paste(image2,pos2)
     new_Image.save("combi.png")
+

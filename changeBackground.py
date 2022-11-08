@@ -2,13 +2,11 @@
 import argparse
 import datetime
 import os
-import random
 import sys
 
-from full_disks import build_url, get_image
-from nasa_sdo import get_sdo_image
-from sentinel import fetch_image
-from utils import make_border, set_background
+
+from utils import  set_background
+from downloadSat import get_Sat_Image
 
 sources = [
     "goes-16",
@@ -30,7 +28,7 @@ random_sources = [
     "sdo",
 ]
 
-sizes = [678, 1356,2227, 5424, 10848]
+
 
 
 def parseArgs():
@@ -117,38 +115,10 @@ def parseArgs():
 if __name__ == "__main__":
     args = parseArgs()
 
-    if (
-        args.width is not None or args.height is not None
-    ) and args.source != "sentinel":
-        smaller = min([args.width if args.width is not None else sys.maxsize, args.height if args.height is not None else sys.maxsize])
 
-        for i in range(0, len(sizes)):
-            if smaller < sizes[i]:
-                break
+    bg=get_Sat_Image(args)
 
-        args.zoomLevel = i
-
-    if args.source is None:
-        args.source = random.choice(random_sources)
-
-    if args.source == "sdo":
-        bg = get_sdo_image(args)
-
-    elif args.source == "sentinel":
-        bg = fetch_image(args)
-
-    else:
-        base_url = build_url(args)
-        bg = get_image(args, base_url)
-
-    if args.width is not None and args.height is not None:
-        bg = make_border(bg, args.width, args.height)
-
-    elif args.width is not None:
-        bg = make_border(bg, args.width, bg.size[1])
-
-    elif args.height is not None:
-        bg = make_border(bg, bg.size[0], args.height)
+    
 
     log_date = datetime.datetime.now(datetime.timezone.utc).strftime("%d_%m_%Y_%H_%M")
     filename = f"{os.path.dirname(os.path.realpath(__file__))}/backgroundImage.png"
