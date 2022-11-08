@@ -156,7 +156,9 @@ if __name__ == "__main__":
     print(f"Image saved to: {filename}")
 
     if args.outFile is not None:
-        image_path = f"{args.outFile}/{log_date}.png"
-        bg.save(image_path)
+        imagePath = args.outFile
+        bg.save(imagePath)
+
+    
 
     set_background(args.bgProgram, filename)
