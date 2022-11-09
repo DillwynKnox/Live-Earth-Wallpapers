@@ -120,7 +120,7 @@ if __name__ == "__main__":
     if args.combination is not None:
         firstargs=copy(args)
         firstargs.source="sdo"
-        firstargs.height=2000
+        firstargs.height=10000
         secondargs=copy(args)
         secondargs.width=500
         secondargs.source="meteosat-11"
