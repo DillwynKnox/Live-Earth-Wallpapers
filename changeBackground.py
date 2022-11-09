@@ -3,6 +3,7 @@ import argparse
 import datetime
 import os
 import sys
+from copy import copy
 
 
 from utils import  set_background,combine
@@ -117,8 +118,12 @@ def parseArgs():
 if __name__ == "__main__":
     args = parseArgs()
     if args.combination is not None:
-        firstargs=args
-        secondargs=args
+        firstargs=copy(args)
+        firstargs.source="sdo"
+        firstargs.height=2000
+        secondargs=copy(args)
+        secondargs.width=500
+        secondargs.source="meteosat-11"
         bg=combine(get_Sat_Image(firstargs),get_Sat_Image(secondargs),1920,1080)
     else:
         bg=get_Sat_Image(args)
